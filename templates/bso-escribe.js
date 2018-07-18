@@ -20,6 +20,7 @@ const BsoEscribe = { template: '<div>'+
 							  '<div class="headline text--lighten-1 teal--text">{{tex.titulo}}</div>' + 
 							  '<div class="text--lighten-1 teal--text" >{{tex.subtitulo}}</div>' + 
 							  '<div class="texto-capitulo" v-html="tex.resenia"></div>' + 
+							  '<div class="texto-autor">Por {{tex.autor}}</div>' + 
 							'</div>' + 
 							'<v-card-actions>' + 
 							'<v-btn color="cyan" dark :href="\'#/texto/\' + tex.id">Leer Más</v-btn>' + 
