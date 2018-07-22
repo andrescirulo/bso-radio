@@ -4,12 +4,18 @@ require_once 'domain/temporada.php';
 require_once 'connect.php';
 
 header('Content-Type: application/json');
+session_save_path('sessions');
+session_start();
+$publico=" AND capi_publico=1";
+if (isset($_SESSION["admin"]) && $_SESSION["admin"] === true){
+    $publico="";
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET["t"])){
         $capitulos = array();
         
-        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link FROM capitulos WHERE capi_temporada=? AND capi_publico=1";
+        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link FROM capitulos WHERE capi_temporada=?" . $publico;
         $st = $dbh->prepare($query);
         $st->bindParam(1,$_GET["t"]);
         $st->execute();
@@ -25,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode($capitulos);
     }
     elseif (isset($_GET["c"])){
-        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link_descargar,capi_link_escuchar,capi_fecha,capi_texto,IFNULL(capi_imagen,'default_capitulo.jpg') capi_imagen FROM capitulos WHERE capi_numero=? AND capi_publico=1";
+        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link_descargar,capi_link_escuchar,capi_fecha,capi_texto,IFNULL(capi_imagen,'default_capitulo.jpg') capi_imagen FROM capitulos WHERE capi_numero=?" . $publico;
         $st = $dbh->prepare($query);
         $st->bindParam(1,$_GET["c"]);
         $st->execute();
@@ -45,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     elseif (isset($_GET["r"])){
         $capitulos = array();
         $idRef=$_GET["r"];
-        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_fecha,capi_imagen FROM capitulos WHERE capi_numero<>? AND capi_publico=1 ORDER BY capi_fecha desc LIMIT 5";
+        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_fecha,capi_imagen FROM capitulos WHERE capi_numero<>?" . $publico . " ORDER BY capi_fecha desc LIMIT 5";
         $st = $dbh->prepare($query);
         $st->bindParam(1,$idRef);
         $st->execute();
@@ -63,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     else{
         $capitulos = array();
         
-        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link_descargar,capi_fecha,capi_texto,IFNULL(capi_imagen,'default_capitulo.jpg') capi_imagen FROM capitulos WHERE capi_publico=1 ORDER BY capi_numero DESC LIMIT 10";
+        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link_descargar,capi_fecha,capi_texto,IFNULL(capi_imagen,'default_capitulo.jpg') capi_imagen FROM capitulos WHERE 1=1" . $publico . " ORDER BY capi_numero DESC LIMIT 10";
         $st = $dbh->prepare($query);
         $st->execute();
         while ($resData = $st->fetch()) {

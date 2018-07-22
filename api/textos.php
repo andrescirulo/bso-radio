@@ -3,11 +3,17 @@ require_once 'domain/texto.php';
 require_once 'connect.php';
 
 header('Content-Type: application/json');
+session_save_path('sessions');
+session_start();
+$publico=" AND texto_publico=1";
+if (isset($_SESSION["admin"]) && $_SESSION["admin"] === true){
+    $publico="";
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET["t"])){
         $idTexto=$_GET["t"];
-        $query = "SELECT texto_id, texto_titulo,texto_contenido,texto_autor, texto_subtitulo, texto_fecha, texto_resenia,IFNULL(texto_imagen,'default_texto.jpg') texto_imagen FROM textos WHERE texto_id=?";
+        $query = "SELECT texto_id, texto_titulo,texto_contenido,texto_autor, texto_subtitulo, texto_fecha, texto_resenia,IFNULL(texto_imagen,'default_texto.jpg') texto_imagen FROM textos WHERE texto_id=?" . $publico;
         
         $st = $dbh->prepare($query);
         $st->bindParam(1,$idTexto);
@@ -28,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     else{
         $textos=array();
         
-        $query = "SELECT texto_id, texto_titulo,texto_autor, texto_subtitulo, texto_fecha, texto_resenia,IFNULL(texto_imagen,'default_texto.jpg') texto_imagen FROM textos ORDER BY texto_fecha DESC";
+        $query = "SELECT texto_id, texto_titulo,texto_autor, texto_subtitulo, texto_fecha, texto_resenia,IFNULL(texto_imagen,'default_texto.jpg') texto_imagen FROM textos WHERE 1=1" . $publico . " ORDER BY texto_fecha DESC";
         
         $st = $dbh->prepare($query);
         $st->execute();
