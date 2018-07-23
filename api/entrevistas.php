@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     else{
         $entrevistas=array();
-        $query = "SELECT entr_id, entr_titulo, entr_fecha,entr_texto,entr_link, IFNULL(entr_imagen,'default_entrevista.jpg') entr_imagen FROM entrevistas WHERE 1=1" . $publico . " ORDER BY entr_fecha DESC";
+        $query = "SELECT entr_id, entr_titulo, entr_fecha,entr_texto,entr_link,entr_autor, IFNULL(entr_imagen,'default_entrevista.jpg') entr_imagen FROM entrevistas WHERE 1=1" . $publico . " ORDER BY entr_fecha DESC";
                 
         $st = $dbh->prepare($query);
         $st->execute();
@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $entrevista->imagen=$resData["entr_imagen"];
             $entrevista->texto=$resData["entr_texto"];
             $entrevista->link=$resData["entr_link"];
+            $entrevista->autor=$resData["entr_autor"];
             $entrevistas[]=$entrevista;
         }
         
