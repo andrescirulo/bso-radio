@@ -88,6 +88,9 @@
 		height: 95% !important;
 	    margin: 5px;
 	}
+	.bso-carousel{
+		height: 380px;
+	}
 	.carousel-animation-out{
 	    animation-name: carousel-out;
 	    animation-duration: 1s;
@@ -169,7 +172,7 @@
 			      	<v-layout row wrap>
 			      		<v-flex xs12 xl10 class="mx-auto">
 				      		<img src="imagenes/logo-bso.png" style="max-width: 100%" class="elevation-7 mx-auto"></img>
-					      	<v-carousel id="el-carousel" hide-controls hide-delimiters lazy class="hidden-md-and-down elevation-7">
+					      	<v-carousel id="el-carousel" hide-controls hide-delimiters lazy class="hidden-md-and-down elevation-7 bso-carousel">
 						      <v-carousel-item v-for="(imagen,i) in imagenes" :src="imagen.src" :key="i"></v-carousel-item>
 						    </v-carousel>
 					      
