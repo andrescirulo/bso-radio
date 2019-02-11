@@ -11,11 +11,29 @@ if (isset($_SESSION["admin"]) && $_SESSION["admin"] === true){
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET["t"])){
+    if (isset($_GET["e"])){
     }
     else{
+        $LIMITE = 10;
+        $pagina=0;
+        if (isset($_GET["p"])){
+            $pagina=($_GET["p"]-1);
+        }
+        $offset = $LIMITE*$pagina;
+        
+        $info= array();
+        
+        if (!isset($_GET["tp"]) || $_GET["tp"]==0){
+            $queryCount = "SELECT COUNT(*) cant FROM entrevistas WHERE 1=1" . $publico;
+            $st = $dbh->prepare($queryCount);
+            $st->execute();
+            $resData = $st->fetch();
+            $info['paginas']=ceil($resData["cant"]/($LIMITE*1.0));
+        }
+        
         $entrevistas=array();
-        $query = "SELECT entr_id, entr_titulo, entr_fecha,entr_texto,entr_link,entr_autor, IFNULL(entr_imagen,'default_entrevista.jpg') entr_imagen FROM entrevistas WHERE 1=1" . $publico . " ORDER BY entr_fecha DESC";
+        $query = "SELECT entr_id, entr_titulo, entr_fecha,entr_texto,entr_link,entr_autor, IFNULL(entr_imagen,'default_entrevista.jpg') entr_imagen,entr_ivoox";
+        $query .= " FROM entrevistas WHERE 1=1" . $publico . " ORDER BY entr_fecha DESC LIMIT 10 OFFSET " . $offset;
                 
         $st = $dbh->prepare($query);
         $st->execute();
@@ -28,10 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $entrevista->texto=$resData["entr_texto"];
             $entrevista->link=$resData["entr_link"];
             $entrevista->autor=$resData["entr_autor"];
+            $entrevista->ivoox=$resData["entr_ivoox"];
             $entrevistas[]=$entrevista;
         }
         
-        echo json_encode($entrevistas);
+        $info['entrevistas']=$entrevistas;
+        echo json_encode($info);
     }
 }
 ?>

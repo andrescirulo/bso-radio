@@ -9,5 +9,7 @@ class Texto
     public $texto;
     public $imagen;
     public $autor;
+    public $seccion;
+    public $publico;
 }
 

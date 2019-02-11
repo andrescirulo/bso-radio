@@ -7,6 +7,8 @@ class Entrevista
     public $texto;
     public $imagen;
     public $link;
+    public $publico;
     public $autor;
+    public $ivoox;
 }
 

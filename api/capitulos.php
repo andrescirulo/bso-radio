@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode($capitulos);
     }
     elseif (isset($_GET["c"])){
-        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link_descargar,capi_link_escuchar,capi_fecha,capi_texto,IFNULL(capi_imagen,'default_capitulo.jpg') capi_imagen FROM capitulos WHERE capi_numero=?" . $publico;
+        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link_descargar,capi_link_ivoox,capi_link_mixcloud,capi_fecha,capi_texto,IFNULL(capi_imagen,'default_capitulo.jpg') capi_imagen FROM capitulos WHERE capi_numero=?" . $publico;
         $st = $dbh->prepare($query);
         $st->bindParam(1,$_GET["c"]);
         $st->execute();
@@ -42,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $capitulo->numero = $resData["capi_numero"];
         $capitulo->nombre = $resData["capi_nombre"];
         $capitulo->linkDescargar = $resData["capi_link_descargar"];
-        $capitulo->linkEscuchar = $resData["capi_link_escuchar"];
+        $capitulo->linkIvoox = $resData["capi_link_ivoox"];
+        $capitulo->linkMixcloud = $resData["capi_link_mixcloud"];
         $capitulo->texto = $resData["capi_texto"];
         $capitulo->imagen = $resData["capi_imagen"];
     
@@ -67,24 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode($capitulos);
     }
     else{
-        $capitulos = array();
-        
-        $query = "SELECT capi_temporada,capi_numero, capi_nombre,capi_link_descargar,capi_fecha,capi_texto,IFNULL(capi_imagen,'default_capitulo.jpg') capi_imagen FROM capitulos WHERE 1=1" . $publico . " ORDER BY capi_numero DESC LIMIT 10";
-        $st = $dbh->prepare($query);
-        $st->execute();
-        while ($resData = $st->fetch()) {
-            $capitulo = new Capitulo();
-            $capitulo->temporada = $resData["capi_temporada"];
-            $capitulo->fecha= $resData["capi_fecha"];
-            $capitulo->numero = $resData["capi_numero"];
-            $capitulo->nombre = $resData["capi_nombre"];
-            $capitulo->linkDescargar = $resData["capi_link_descargar"];
-            $capitulo->texto = $resData["capi_texto"];
-            $capitulo->imagen = $resData["capi_imagen"];
-            $capitulos[] = $capitulo;
-        }
-        
-        echo json_encode($capitulos);
     }
 }
 

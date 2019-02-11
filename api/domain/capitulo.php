@@ -5,9 +5,11 @@ class Capitulo
     public $numero;
     public $nombre;
     public $linkDescargar;
-    public $linkEscuchar;
+    public $linkIvoox;
+    public $linkMixcloud;
     public $fecha;
     public $texto;
     public $imagen;
+    public $publico;
 }
 

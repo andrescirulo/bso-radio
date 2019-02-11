@@ -11,34 +11,77 @@ const BsoEscribe = { template: '<div>'+
 					 '</div>'+
 					 '<v-card v-if="textos.length>0" v-for="(tex,i) in textos" :key="i" style="margin-bottom:10px">' + 
 						'<v-container fluid grid-list-lg>' + 
-						'<v-layout row wrap>' + 
-						  '<v-flex xs12 sm5>' + 
-							'<v-card-media :src="\'imagenes/\' + tex.imagen" height="250px" style="border-radius:10px" contain></v-card-media>' + 
+							'<v-layout row wrap>' + 
+							  '<v-flex xs12 sm5>' + 
+								'<v-img :src="getImageUrl(tex)" height="250px" style="border-radius:10px" class="grey lighten-2">' + 
+							  		'<v-layout slot="placeholder" fill-height align-center justify-center ma-0>' + 
+							  			'<v-progress-circular indeterminate color="teal"></v-progress-circular>' +
+							  		'</v-layout>' +
+							  	'</v-img>' +
+							  '</v-flex>' + 
+							  '<v-flex xs12 sm7>' + 
+								'<div>' + 
+								  '<div class="headline text--lighten-1 teal--text">{{getTitulo(tex)}}</div>' + 
+								  '<div class="text--lighten-1 teal--text" >{{tex.subtitulo}}</div>' + 
+								  '<div class="escrito-resenia-texto" v-html="tex.resenia"></div>' + 
+								  '<div class="escrito-resenia-autor">Por {{tex.autor}}</div>' + 
+								'</div>' + 
+								'<v-card-actions>' + 
+									'<v-btn small color="cyan" dark :href="\'#/texto/\' + tex.id">Leer Más</v-btn>' + 
+								'</v-card-actions>' + 
+							  '</v-flex>' + 
+							'</v-layout>' + 
+					      '</v-container>' + 
+					 '</v-card>' +
+					 '<v-layout row wrap>' +
+						  '<v-flex>' +
+						  	'<v-pagination v-model="pagina" :length="totalPaginas" ></v-pagination>' +
 						  '</v-flex>' + 
-						  '<v-flex xs12 sm7>' + 
-							'<div>' + 
-							  '<div class="headline text--lighten-1 teal--text">{{tex.titulo}}</div>' + 
-							  '<div class="text--lighten-1 teal--text" >{{tex.subtitulo}}</div>' + 
-							  '<div class="texto-capitulo" v-html="tex.resenia"></div>' + 
-							  '<div class="texto-autor">Por {{tex.autor}}</div>' + 
-							'</div>' + 
-							'<v-card-actions>' + 
-							'<v-btn color="cyan" dark :href="\'#/texto/\' + tex.id">Leer Más</v-btn>' + 
-							'</v-card-actions>' + 
-						  '</v-flex>' + 
-						'</v-layout>' + 
-				      '</v-container>' + 
-						'</v-card>' +
+					 '</v-layout>' + 
 					 '</div>' ,
- data () {
-		return { textos:[]}
- },
- mounted() {
-  Vue.http.get("api/textos.php").then(result => {
-          result.json().then(elem =>{
-          	this.textos = elem;
-          });
-      }, error => {
-          console.error(error);
-      });
-}}
+	 data () {
+			return { textos:[],pagina:0,totalPaginas:0}
+	 },
+	 created: function() {
+		let pag=this.$route.params.pagina;
+		if (pag!=null){
+			this.pagina=parseInt(pag);
+		}
+		else{
+			this.pagina=1;
+		}
+     },
+	 methods:{
+		getImageUrl: function(texto){
+			return 'api/thumbnail.php?ty=tr&i=' + encodeURIComponent(texto.imagen);
+		},
+		getTitulo(texto){
+			if (texto==null){return};
+			let titulo=texto.titulo;
+			if (texto.seccion!=null)
+			{
+				titulo=texto.seccion + ": " + titulo;
+			}
+			return titulo;
+		},
+		getPagina(){
+			this.textos = new Array();
+			window.history.pushState(null,'', '#/bso-escribe/' + this.pagina);
+			Vue.http.get("api/textos.php?p=" + this.pagina + "&tp=" + this.totalPaginas).then(result => {
+	            result.json().then(res=>{
+	            	this.textos = res.textos;
+	            	if (res.paginas!=null){
+	            		this.totalPaginas = res.paginas; 
+	            	}
+	            });
+	        }, error => {
+	            console.error(error);
+	        });
+		}
+	},
+	watch:{
+		pagina: function(val){
+			this.getPagina();
+		}
+	}
+}

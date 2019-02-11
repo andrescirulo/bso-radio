@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $cuaderno->id=$resData["cuad_id"];
             $cuaderno->titulo=$resData["cuad_titulo"];
             $cuaderno->imagen=$resData["cuad_imagen"];
-            $cuaderno->imagenMin=str_replace(".","_min.",$resData["cuad_imagen"]);
+            $cuaderno->imagenMin=$resData["cuad_imagen"];
+//             $cuaderno->imagenMin=str_replace(".","_min.",$resData["cuad_imagen"]);
             $cuadernos[]=$cuaderno;
         }
         

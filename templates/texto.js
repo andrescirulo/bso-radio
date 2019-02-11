@@ -7,15 +7,21 @@ const Texto = { template: '<div>'+
 		'<v-layout v-if="texto!=null">' +
 		'<v-flex xs12>' +
 		  '<v-card style="margin:10px" >' +
-			'<v-card-media v-if="texto.imagen!=null" :src="\'imagenes/\' + texto.imagen" height="400px">' +
-			'</v-card-media>' +
+			'<v-img v-if="texto.imagen!=null" :src="\'imagenes/\' + texto.imagen" height="400px" class="grey lighten-2">' + 
+		  		'<v-layout slot="placeholder" fill-height align-center justify-center ma-0>' + 
+		  			'<v-progress-circular indeterminate color="teal"></v-progress-circular>' +
+		  		'</v-layout>' +
+		  	'</v-img>' +
 			'<v-card-title primary-title>' +
 			'<v-layout row>' + 
-			'<v-flex xs12 sm10 md8 offset-sm1 offset-md2>' +
+			'<v-flex xs12 sm10 lg8 offset-sm1 offset-lg2>' +
 			  '<div>' +
 				'<h3 class="headline mb-0 teal--text text--darken-4">{{texto.titulo}}</h3>' +
 				'<h3 class="subheading mb-0 autor-texto teal--text">Por {{texto.autor}}</h3>' +
-				'<div v-html="texto.texto" style="text-align: justify;"></div>' +
+				'<div class="contenido-texto" v-html="texto.texto" style="text-align: justify;"></div>' +
+				'<div style="width:100%;text-align:center">' +
+					'<v-btn small color="cyan" dark @click="volver()">Volver</v-btn>' +
+				'</div>' +
 			  '</div>' +
 			  '</v-flex>' +
 			  '</v-layout>' + 
@@ -27,16 +33,30 @@ const Texto = { template: '<div>'+
 	'</v-layout>' +
 	'</div>' ,
 	data () {
-	      return { texto:{}}
+	      return { texto:null}
 	},
 	mounted() {
 			const idTexto=this.$route.params.id;
 	        Vue.http.get("api/textos.php?t=" + idTexto).then(result => {
 	            result.json().then(texto =>{
 	            	this.texto = texto;
+	            	this.addMetaData();
 	            });
 	        }, error => {
 	            console.error(error);
 	        });
+	},
+	methods:{
+		addMetaData: function(){
+			let url = "http://www.bsoradio.com.ar/texto/" + this.texto.id;
+			let titulo = "BSO - " + this.texto.titulo;
+			let imagen = "http://www.bsoradio.com.ar/imagenes/" + this.texto.imagen;
+			let descripcion = this.texto.resenia;
+			this.$root.addMetaData(url,titulo,imagen,descripcion)
+		},
+		volver: function(){
+			this.texto=null;
+			this.$router.go(-1);
+		}
 	}
 }
