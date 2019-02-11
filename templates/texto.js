@@ -7,7 +7,7 @@ const Texto = { template: '<div>'+
 		'<v-layout v-if="texto!=null">' +
 		'<v-flex xs12>' +
 		  '<v-card style="margin:10px" >' +
-			'<v-img v-if="texto.imagen!=null" :src="\'imagenes/\' + texto.imagen" height="400px" class="grey lighten-2">' + 
+			'<v-img v-if="texto.imagen!=null" :src="\'imagenes/\' + texto.imagen" :height="getImgHeight()" class="grey lighten-2">' + 
 		  		'<v-layout slot="placeholder" fill-height align-center justify-center ma-0>' + 
 		  			'<v-progress-circular indeterminate color="teal"></v-progress-circular>' +
 		  		'</v-layout>' +
@@ -47,6 +47,12 @@ const Texto = { template: '<div>'+
 	        });
 	},
 	methods:{
+		getImgHeight:function(){
+			if (this.$vuetify.breakpoint.xs){
+				return "200px";
+			}
+			return "400px";
+		},
 		addMetaData: function(){
 			let url = "http://www.bsoradio.com.ar/texto/" + this.texto.id;
 			let titulo = "BSO - " + this.texto.titulo;

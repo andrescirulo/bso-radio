@@ -14,15 +14,15 @@ const Capitulo = { template: '<div>'+
 		  	'</v-img>' +
 			'<v-card-title primary-title>' +
 			  '<div style="width:100%">' +
-				'<h3 class="headline mb-0">{{capitulo.titulo}}</h3>' +
+				'<h3 class="headline" style="margin-bottom: 20px!important;">{{capitulo.nombre}}</h3>' +
 				'<iframe v-if="capitulo.linkMixcloud!=null" width="100%" height="60" :src="getSrcMixcloud(capitulo.linkMixcloud)" frameborder="0" ></iframe>' +
 				'<iframe v-if="capitulo.linkIvoox!=null && capitulo.linkMixcloud==null" width="100%" height="110" frameborder="0" allowfullscreen="" scrolling="no" :src="getSrcIvoox(capitulo.linkIvoox)"></iframe>' + 
 				'<div v-html="capitulo.texto"></div>' +
 			  '</div>' +
 			'</v-card-title>' +
 			'<v-card-actions>' +
-			  '<v-btn v-if="capitulo.linkMixcloud!=null" color="teal lighten-1" dark :href="capitulo.linkMixcloud" target="_blank">Escuchar en Mixcloud</v-btn>' +
-			  '<v-btn v-if="capitulo.linkIvoox!=null" color="teal lighten-1" dark :href="capitulo.linkIvoox" target="_blank">Escuchar en Ivoox</v-btn>' +
+			  '<v-btn v-if="capitulo.linkMixcloud!=null" color="teal lighten-1" dark :href="capitulo.linkMixcloud" target="_blank">{{getBtnPrefix() + \'Mixcloud\'}}</v-btn>' +
+			  '<v-btn v-if="capitulo.linkIvoox!=null" color="teal lighten-1" dark :href="capitulo.linkIvoox" target="_blank">{{getBtnPrefix() + \'Ivoox\'}}</v-btn>' +
 			  '<v-btn color="teal lighten-1" dark :href="capitulo.linkDescargar" target="_blank">Descargar</v-btn>' +
 			'</v-card-actions>' +
 			'<div style="padding:20px" class="body-2">' +
@@ -79,6 +79,12 @@ const Capitulo = { template: '<div>'+
 	        });
 	},
 	methods:{
+		getBtnPrefix: function(){
+			if (this.$vuetify.breakpoint.xs){
+				return '';
+			}
+			return 'Escuchar en '; 
+		},
 		getSrcMixcloud: function(link){
 			return 'https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&feed=' + link.replace('https://www.mixcloud.com','');
 		},
@@ -87,7 +93,7 @@ const Capitulo = { template: '<div>'+
 		},
 		addMetaData: function(){
 			let url = "http://www.bsoradio.com.ar/capitulo/" + this.capitulo.numero;
-			let titulo = "BSO - " + this.capitulo.titulo;
+			let titulo = "BSO - " + this.capitulo.nombre;
 			let imagen = "http://www.bsoradio.com.ar/imagenes/" + this.capitulo.imagen;
 			let descripcion = this.capitulo.texto;
 			this.$root.addMetaData(url,titulo,imagen,descripcion)

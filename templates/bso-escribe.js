@@ -13,7 +13,7 @@ const BsoEscribe = { template: '<div>'+
 						'<v-container fluid grid-list-lg>' + 
 							'<v-layout row wrap>' + 
 							  '<v-flex xs12 sm5>' + 
-								'<v-img :src="getImageUrl(tex)" height="250px" style="border-radius:10px" class="grey lighten-2">' + 
+								'<v-img :src="getImageUrl(tex)" :id="\'img_\' + tex.id" height="250px" style="border-radius:10px" class="grey lighten-2">' + 
 							  		'<v-layout slot="placeholder" fill-height align-center justify-center ma-0>' + 
 							  			'<v-progress-circular indeterminate color="teal"></v-progress-circular>' +
 							  		'</v-layout>' +
@@ -27,7 +27,7 @@ const BsoEscribe = { template: '<div>'+
 								  '<div class="escrito-resenia-autor">Por {{tex.autor}}</div>' + 
 								'</div>' + 
 								'<v-card-actions>' + 
-									'<v-btn small color="cyan" dark :href="\'#/texto/\' + tex.id">Leer Más</v-btn>' + 
+									'<v-btn small color="teal lighten-1" dark :href="\'#/texto/\' + tex.id">Leer Más</v-btn>' + 
 								'</v-card-actions>' + 
 							  '</v-flex>' + 
 							'</v-layout>' + 
@@ -53,6 +53,12 @@ const BsoEscribe = { template: '<div>'+
      },
 	 methods:{
 		getImageUrl: function(texto){
+//			let imgId='img_' + texto.id;
+//			let imgElem = document.getElementById(imgId);
+//			if (imgElem==null){return;}
+//			let size = imgElem.offsetWidth;
+//			if (size<=10){return;}
+//			return 'api/thumbnail.php?ty=tr&i=' + encodeURIComponent(texto.imagen) + "&t=" + size;
 			return 'api/thumbnail.php?ty=tr&i=' + encodeURIComponent(texto.imagen);
 		},
 		getTitulo(texto){
