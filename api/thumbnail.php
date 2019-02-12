@@ -18,7 +18,7 @@ if (isset($_GET["i"])){
 //     echo $dire;
     $archivo=explode('/',$_GET["i"])[1];
 //     echo $archivo;
-    $arch = crearThumbConMinimo($dire,$archivo,$tamanio);
+    $arch = crearThumbConMinimoWidth($dire,$archivo,$tamanio);
 
     readfile($arch);
 }

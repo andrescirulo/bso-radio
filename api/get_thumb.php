@@ -4,7 +4,7 @@
 		return str_replace( DIRECTORY_SEPARATOR . 'api', DIRECTORY_SEPARATOR  . 'imagenes',getcwd());
 	}
 
-	function crearThumbConMinimo($dire,$archivo,$minDim)
+	function crearThumbConMinimoWidth($dire,$archivo,$minDim)
 	{
 		$base_img_dir=getImgBaseDir();
 		$source= $base_img_dir . DIRECTORY_SEPARATOR . $dire . DIRECTORY_SEPARATOR . $archivo;
@@ -15,14 +15,16 @@
 		
 		list($width_s, $height_s, $type, $attr) = getimagesize($source, $info2); // obtengo informacion del archivo
 				
-		if ($width_s<$height_s){
-			$width_d=$minDim;
-			$height_d=round($height_s*($width_d/$width_s));
-		}
-		else{
-			$height_d=$minDim;
-			$width_d=round($width_s*($height_d/$height_s));
-		}
+// 		if ($width_s<$height_s){
+// 			$width_d=$minDim;
+// 			$height_d=round($height_s*($width_d/$width_s));
+// 		}
+// 		else{
+// 			$height_d=$minDim;
+// 			$width_d=round($width_s*($height_d/$height_s));
+// 		}
+		$width_d=$minDim;
+		$height_d=round($height_s*($width_d/$width_s));
 		
 		$dirDest = $base_img_dir . DIRECTORY_SEPARATOR  . 'thumbnails' . DIRECTORY_SEPARATOR . $dire . DIRECTORY_SEPARATOR . $width_d . "_" . $height_d . DIRECTORY_SEPARATOR;
 		$dest = $dirDest . $archivo;
@@ -37,7 +39,7 @@
 			if (!file_exists($dirDest)){
 				mkdir($dirDest,0755,true);
 			}
-			imagejpeg($gd_d,$dest,90); // graba
+			imagejpeg($gd_d,$dest,85); // graba
 			// Se liberan recursos
 			imagedestroy($gd_s);
 			imagedestroy($gd_d);
