@@ -4,7 +4,7 @@
 		return str_replace( DIRECTORY_SEPARATOR . 'api', DIRECTORY_SEPARATOR  . 'imagenes',getcwd());
 	}
 
-	function crearThumbConMinimoWidth($dire,$archivo,$minDim)
+	function crearThumbConMinimoWidth($dire,$archivo,$minDim,$webp)
 	{
 		$base_img_dir=getImgBaseDir();
 		$source= $base_img_dir . DIRECTORY_SEPARATOR . $dire . DIRECTORY_SEPARATOR . $archivo;
@@ -28,6 +28,9 @@
 		
 		$dirDest = $base_img_dir . DIRECTORY_SEPARATOR  . 'thumbnails' . DIRECTORY_SEPARATOR . $dire . DIRECTORY_SEPARATOR . $width_d . "_" . $height_d . DIRECTORY_SEPARATOR;
 		$dest = $dirDest . $archivo;
+		if ($webp==true){
+		  $dest = str_replace(".jpg",".webp",$dest);
+		}
 		
 		if (!file_exists($dest))
 		{
@@ -39,7 +42,13 @@
 			if (!file_exists($dirDest)){
 				mkdir($dirDest,0755,true);
 			}
-			imagejpeg($gd_d,$dest,85); // graba
+			
+			if ($webp==true){
+			    imagewebp($gd_d,$dest,85); // graba
+			}
+			else{
+			    imagejpeg($gd_d,$dest,85); // graba
+			}
 			// Se liberan recursos
 			imagedestroy($gd_s);
 			imagedestroy($gd_d);

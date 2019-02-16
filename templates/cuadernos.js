@@ -47,7 +47,7 @@ const Cuadernos = { template: '<div><v-card>'+
 		},
 		methods: {
 			getImageUrl: function(cuaderno){
-				return 'api/thumbnail.php?ty=cu&i=' + encodeURIComponent(cuaderno.imagen);
+				return 'api/thumbnail.php?ty=cu&i=' + encodeURIComponent(cuaderno.imagen) + this.$root.$webp;
 			},
 			cerrarZoom:function (index){
 				this.zoom=false;

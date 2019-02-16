@@ -75,7 +75,7 @@ const Inicio = { template: '<div>'+
 	        });
 		},
 		getImageUrl: function(post){
-			return 'api/thumbnail.php?ty=ca&i=' + encodeURIComponent(post.imagen);
+			return 'api/thumbnail.php?ty=ca&i=' + encodeURIComponent(post.imagen) + this.$root.$webp;
 		},
 		getFecha: function (post){
 			let fechaLim=dayjs().subtract(14, 'day');

@@ -46,8 +46,8 @@
 			      <v-flex xs12 lg10 xl8 class="mx-auto main-panel" id="main-panel" >
 			      	<v-layout row wrap>
 			      		<v-flex xs12 xl10 class="mx-auto" id="submain-panel">
-				      		<img v-if="imagenGrande" src="imagenes/logo-bso.jpg" style="max-width: 100%" class="elevation-7 mx-auto"></img>
-				      		<img v-if="!imagenGrande" src="imagenes/logo-bso_sml.jpg" style="max-width: 100%" class="elevation-7 mx-auto"></img>
+				      		<img v-if="imagenGrande" src="imagenes/logo-bso.webp" style="max-width: 100%" class="elevation-7 mx-auto"></img>
+				      		<img v-if="!imagenGrande" src="imagenes/logo-bso_sml.webp" style="max-width: 100%" class="elevation-7 mx-auto"></img>
 					      	<v-carousel v-if="mostrarCarousel()" id="el-carousel" height="350" hide-controls hide-delimiters  class="elevation-7 bso-carousel">
 						      <v-carousel-item v-for="(imagen,i) in imagenes" :src="imagen.src" :key="i"></v-carousel-item>
 						    </v-carousel>
@@ -75,18 +75,18 @@
 	</v-app>
 
 
-		
-
-		<!-- development version, includes helpful console warnings-->
-		<script src="scripts/dayjs.min.js"></script> 
-		<script src="scripts/vue.js"></script> 
 		<!-- production version, optimized for size and speed 
 		<script src="scripts/vue.min.js"></script> -->
 		
+		<script src="scripts/modernizr.min.js"></script> 
+		<script src="scripts/dayjs.min.js"></script> 
+		<script src="scripts/vue.js"></script> 
 		<script src="scripts/vue-router.js"></script>
 		<script src="scripts/vuetify_1.4.0.js"></script>
 		<script src="scripts/vue-resource.js"></script>
-<!-- 		<script src="scripts/vue2-editor.js"></script> -->
+		<!-- <script src="scripts/scripts.min.js"></script>-->
+		
+		
 		
 		<script type="text/javascript" src="components/cuaderno-zoom.js"></script>
 		<script type="text/javascript" src="components/publicidad-component.js"></script>
@@ -101,5 +101,8 @@
 		<script type="text/javascript" src="templates/temporadas.js"></script>
 		
 		<script type="text/javascript" src="templates/index.js"></script>
+		 
+		<!-- <script type="text/javascript" src="templates/templates.min.js"></script>-->
+		 
 </body>
 </html>

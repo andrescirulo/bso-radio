@@ -53,13 +53,7 @@ const BsoEscribe = { template: '<div>'+
      },
 	 methods:{
 		getImageUrl: function(texto){
-//			let imgId='img_' + texto.id;
-//			let imgElem = document.getElementById(imgId);
-//			if (imgElem==null){return;}
-//			let size = imgElem.offsetWidth;
-//			if (size<=10){return;}
-//			return 'api/thumbnail.php?ty=tr&i=' + encodeURIComponent(texto.imagen) + "&t=" + size;
-			return 'api/thumbnail.php?ty=tr&i=' + encodeURIComponent(texto.imagen);
+			return 'api/thumbnail.php?ty=tr&i=' + encodeURIComponent(texto.imagen) + this.$root.$webp;
 		},
 		getTitulo(texto){
 			if (texto==null){return};

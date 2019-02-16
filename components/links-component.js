@@ -17,13 +17,13 @@ Vue.component('links-component',{
 		'</v-container>',
 	data () {
 	      return { links:[
-	    	  {imagen:'imagenes/links/facebook.png',link:'https://www.facebook.com/bsoradio/',sml:true,pad:5},
-	    	  {imagen:'imagenes/links/instagram.png',link:'https://www.instagram.com/bsoradio/',sml:true,pad:5},
-	    	  {imagen:'imagenes/links/twitter.png',link:'https://twitter.com/BSOradio',sml:true,pad:5},
-	    	  {imagen:'imagenes/links/itunes.png',link:'https://itunes.apple.com/ar/podcast/bso-banda-sonora-original-temporada-7-2018/id1396781627?mt=2',rad:3},
-	    	  {imagen:'imagenes/links/ivoox.jpg',link:'http://www.ivoox.com/escuchar-bso-banda-sonora-original_nq_91917_1.html'},
-	    	  {imagen:'imagenes/links/mixcloud.jpg',link:'https://www.mixcloud.com/bsoradio/'},
-	    	  {imagen:'imagenes/links/youtube.jpg',link:'https://www.youtube.com/channel/UCAwA_hNlgUomg0wAZa18DFA'},
+	    	  {imagen:'imagenes/links/facebook.webp',link:'https://www.facebook.com/bsoradio/',sml:true,pad:5},
+	    	  {imagen:'imagenes/links/instagram.webp',link:'https://www.instagram.com/bsoradio/',sml:true,pad:5},
+	    	  {imagen:'imagenes/links/twitter.webp',link:'https://twitter.com/BSOradio',sml:true,pad:5},
+	    	  {imagen:'imagenes/links/itunes.webp',link:'https://itunes.apple.com/ar/podcast/bso-banda-sonora-original-temporada-7-2018/id1396781627?mt=2',rad:3},
+	    	  {imagen:'imagenes/links/ivoox.webp',link:'http://www.ivoox.com/escuchar-bso-banda-sonora-original_nq_91917_1.html'},
+	    	  {imagen:'imagenes/links/mixcloud.webp',link:'https://www.mixcloud.com/bsoradio/'},
+	    	  {imagen:'imagenes/links/youtube.webp',link:'https://www.youtube.com/channel/UCAwA_hNlgUomg0wAZa18DFA'},
 	      ]}
 	},
 	methods:{

@@ -99,7 +99,7 @@ new Vue({
 					{ src:'imagenes/carousel/1.webp'},
 					{ src:'imagenes/carousel/2.webp'},
 					{ src:'imagenes/carousel/3.webp'},
-					{ src:'imagenes/carousel/4.png'},
+					{ src:'imagenes/carousel/4.webp'},
 					{ src:'imagenes/carousel/5.webp'},
 					{ src:'imagenes/carousel/6.webp'},
 					{ src:'imagenes/carousel/7.webp'}],
@@ -109,6 +109,12 @@ new Vue({
 	mounted(){
 		updateMinHeight();
 		this.timer=setInterval(this.setImagenInicial,200);
+		if (Modernizr.webp==true){
+			this.$root.$webp='&webp=1';
+	    }
+		else{
+			this.$root.$webp='';
+		}
 	},
 	methods:{
 		mostrarCarousel: function() {

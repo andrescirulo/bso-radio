@@ -53,7 +53,7 @@ const BsoEscucha = { template: '<div>'+
 	},
 	methods:{
 		getImageUrl: function(entrevista){
-			return 'api/thumbnail.php?ty=en&i=' + encodeURIComponent(entrevista.imagen);
+			return 'api/thumbnail.php?ty=en&i=' + encodeURIComponent(entrevista.imagen) + this.$root.$webp;
 		},
 		getTitulo(texto){
 			if (texto==null){return};
