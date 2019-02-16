@@ -33,7 +33,7 @@ const BsoEscribe = { template: '<div>'+
 							'</v-layout>' + 
 					      '</v-container>' + 
 					 '</v-card>' +
-					 '<v-layout row wrap>' +
+					 '<v-layout row wrap v-if="textos.length>0">' +
 						  '<v-flex>' +
 						  	'<v-pagination v-model="pagina" :length="totalPaginas" ></v-pagination>' +
 						  '</v-flex>' + 

@@ -34,7 +34,7 @@ const BsoEscucha = { template: '<div>'+
         '</v-container>' + 
 	  '</v-card>' +
 	  '<v-layout row wrap>' +
-	  '<v-flex>' +
+	  '<v-flex v-if="entrevistas.length>0">' +
 	  	'<v-pagination v-model="pagina" :length="totalPaginas" ></v-pagination>' +
 	  '</v-flex>' + 
  '</v-layout>' + 

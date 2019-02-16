@@ -9,7 +9,6 @@ const Cuadernos = { template: '<div><v-card>'+
 					 	'<v-layout row wrap>' +
 							'<v-flex v-for="(cuad,i) in cuadernos" :key="i" xs12 sm6 lg4>' +
 								'<v-card class="elevation-5" style="margin:5px">' +
-//									'<v-img :src="\'imagenes/\' + cuad.imagenMin" height="200px" >' +
 									'<v-img :src="getImageUrl(cuad)" height="200px" >' +
 										'<v-container fill-height fluid pa-0>' +
 											'<v-layout fill-height>' +
