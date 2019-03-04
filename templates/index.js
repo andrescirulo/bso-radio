@@ -104,7 +104,16 @@ new Vue({
 					{ src:'imagenes/carousel/6.webp'},
 					{ src:'imagenes/carousel/7.webp'}],
 				  imagenGrande:false,
-				  timer:null
+				  timer:null,
+				  paginas: [
+					  { titulo:'Inicio',ruta:'/inicio/1',icono:'home'},
+					  { titulo:'Temporadas',ruta:'/temporadas',icono:'assignment'},
+					  { titulo:'¡BSO Escribe!',ruta:'/bso-escribe/1',icono:'create'},
+					  { titulo:'¡BSO Escucha!',ruta:'/bso-escucha/1',icono:'mic'},
+					  { titulo:'Quienes Somos',ruta:'/quienes-somos',icono:'face'},
+					  { titulo:'¡Cuadernos!',ruta:'/cuadernos',icono:'chrome_reader_mode'},
+				  ],
+				  menu:false
 	}},
 	mounted(){
 		updateMinHeight();
@@ -126,7 +135,7 @@ new Vue({
 				clearInterval(this.timer);
 				this.mostrarImagenGrande();
 				let navBar=document.getElementById("navBar");
-				sticky=navBar.offsetTop;
+//				sticky=navBar.offsetTop;
 			}
 		},
 		mostrarImagenGrande: function(){

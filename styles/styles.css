@@ -279,3 +279,6 @@
     width: 100%;
     height: auto;
 }
+.main-toolbar > .v-toolbar__content{
+	padding-right:0px!important;
+}
