@@ -81,6 +81,7 @@ const BsoEscribe = { template: '<div>'+
 	},
 	watch:{
 		pagina: function(val){
+			scrollToTop();
 			this.getPagina();
 		}
 	}

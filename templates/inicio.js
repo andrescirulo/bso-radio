@@ -120,6 +120,7 @@ const Inicio = { template: '<div>'+
 	},
 	watch:{
 		pagina: function(val){
+			scrollToTop();
 			this.getPagina();
 		}
 	}
