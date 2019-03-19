@@ -17,6 +17,7 @@ const Texto = { template: '<div>'+
 			'<v-flex xs12 sm10 lg8 offset-sm1 offset-lg2>' +
 			  '<div>' +
 				'<h3 class="headline mb-0 teal--text text--darken-4">{{texto.titulo}}</h3>' +
+				'<h3 class="title mb-0 teal--text text--darken-1" style="font-size:18px!important">{{texto.subtitulo}}</h3>' +
 				'<h3 class="subheading mb-0 autor-texto teal--text">Por {{texto.autor}}</h3>' +
 				'<div class="contenido-texto" v-html="texto.texto" style="text-align: justify;"></div>' +
 				'<div style="width:100%;text-align:center">' +
