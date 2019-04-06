@@ -5,7 +5,7 @@ Vue.component('links-component',{
 	template: '<v-container fluid >' + 
 		'<v-layout row wrap>' + 
 		  '<v-flex style="margin-bottom:20px" :style="getFlexStyle(link)" :class="getFlexClass(link)"  v-for="(link,i) in links" :key="i">' +
-		  	'<a :href="link.link">' +
+		  	'<a :href="link.link" target="_blank">' +
 				'<v-img :src="link.imagen" class="transparent elevation-6" :style="getImgStyle(link)">' + 
 		    		'<v-layout slot="placeholder" fill-height align-center justify-center ma-0>' + 
 		    			'<v-progress-circular indeterminate color="orange"></v-progress-circular>' + 
@@ -24,6 +24,7 @@ Vue.component('links-component',{
 	    	  {imagen:'imagenes/links/ivoox.webp',link:'http://www.ivoox.com/escuchar-bso-banda-sonora-original_nq_91917_1.html'},
 	    	  {imagen:'imagenes/links/mixcloud.webp',link:'https://www.mixcloud.com/bsoradio/'},
 	    	  {imagen:'imagenes/links/youtube.webp',link:'https://www.youtube.com/channel/UCAwA_hNlgUomg0wAZa18DFA'},
+	    	  {imagen:'imagenes/links/spotify.webp',link:'https://open.spotify.com/show/14pzdz8zdRHMeinocZwbIq?si=ou4qkxTPQP-wFMbRhQvx4A',rad:10},
 	      ]}
 	},
 	methods:{
