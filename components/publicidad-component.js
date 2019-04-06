@@ -5,7 +5,7 @@ Vue.component('publicidad-component',{
 	template: '<v-container fluid >' + 
 		'<v-layout row wrap>' + 
 		  '<v-flex style="margin-bottom:20px" class="elevation-6" v-for="(pub,i) in publicidades" :key="i" xs12>' +
-		  	'<a :href="pub.link">' +
+		  	'<a :href="pub.link" target="_blank">' +
 		  		'<video v-if="mostrarVideo(pub)" :src="getVideoUrl(pub)" class="video-style" autoplay loop muted ></video>' + 
 				'<v-img v-else :src="pub.imagen" :style="getStyle(pub)"  >' + 
 		    		'<v-layout slot="placeholder" fill-height align-center justify-center ma-0>' + 
@@ -22,11 +22,12 @@ Vue.component('publicidad-component',{
 	    	  {imagen:'imagenes/saludos/asalallena.webp',link:'http://www.asalallena.com.ar/'},
 	    	  {imagen:'imagenes/saludos/asalallena-cursos.webp',link:'http://www.asalallena.com.ar/category/actividades-asl/cursos/'},
 	    	  {imagen:'imagenes/saludos/montehermoso-libros.gif',link:'https://montehermosoediciones.com.ar/libros.html',animado:true},
-	    	  {imagen:'imagenes/saludos/cartelera.gif',link:null,animado:true},
+//	    	  {imagen:'imagenes/saludos/cartelera.gif',link:null,animado:true},
 	    	  {imagen:'imagenes/saludos/guillermoguareschi.webp',link:'http://www.guillermoguareschi.com/'},
 	    	  {imagen:'imagenes/saludos/argentinapodcastera.webp',link:'http://www.argentinapodcastera.com.ar/'},
 	    	  {imagen:'imagenes/saludos/calandacritica.webp',link:'https://calandacritica.com/'},
-	    	  {imagen:'imagenes/saludos/cinecuaderno.webp',link:'http://cinecuaderno.blogspot.com.ar/'},
+//	    	  {imagen:'imagenes/saludos/cinecuaderno.webp',link:'http://cinecuaderno.blogspot.com.ar/'},
+	    	  {imagen:'imagenes/saludos/lahoradelmiedo.webp',link:'http://lahoradelmiedo.com/'},
 	    	  {imagen:'imagenes/saludos/larocker.webp',link:'http://www.larocker.com.ar/',back:'#000000'},
 	    	  {imagen:'imagenes/saludos/shinobi.webp',link:'http://shinobinews.com/',back:'#000000'}
 	      ]}
