@@ -21,7 +21,7 @@ const Texto = { template: '<div>'+
 				'<h3 class="subheading mb-0 autor-texto teal--text">Por {{texto.autor}}</h3>' +
 				'<div class="contenido-texto" v-html="texto.texto" style="text-align: justify;"></div>' +
 				'<div style="width:100%;text-align:center">' +
-					'<v-btn small color="cyan" dark @click="volver()">Volver</v-btn>' +
+					'<v-btn small color="teal lighten-1" dark @click="volver()">Volver</v-btn>' +
 				'</div>' +
 			  '</div>' +
 			  '</v-flex>' +
