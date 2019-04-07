@@ -11,3 +11,4 @@
 /api/sessions
 /static
 /templates/templates.min.js
+/scripts/scripts.min.js
