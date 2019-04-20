@@ -279,6 +279,11 @@
     width: 100%;
     height: auto;
 }
+
 .main-toolbar > .v-toolbar__content{
 	padding-right:0px!important;
+}
+.btn-link-capitulo{
+	margin-bottom: 8px!important;
+	margin-left: 8px!important;
 }
