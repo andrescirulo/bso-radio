@@ -279,3 +279,7 @@
     width: 100%;
     height: auto;
 }
+.btn-link-capitulo{
+	margin-bottom: 8px!important;
+	margin-left: 8px!important;
+}
