@@ -6,7 +6,7 @@ const Texto = { template: '<div>'+
 		'</div>'+
 		'<v-layout v-if="texto!=null">' +
 		'<v-flex xs12>' +
-		  '<v-card style="margin:10px" >' +
+		  '<v-card >' +
 			'<v-img v-if="texto.imagen!=null" :src="\'imagenes/\' + texto.imagen" :height="getImgHeight()" class="grey lighten-2">' + 
 		  		'<v-layout slot="placeholder" fill-height align-center justify-center ma-0>' + 
 		  			'<v-progress-circular indeterminate color="teal"></v-progress-circular>' +
