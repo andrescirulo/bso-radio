@@ -93,6 +93,7 @@
 .capitulo-panel-derecha {
 	height: 95% !important;
 	margin: 5px;
+    padding-bottom: 30px!important;
 }
 
 .bso-carousel {
@@ -286,4 +287,5 @@
 .btn-link-capitulo{
 	margin-bottom: 8px!important;
 	margin-left: 8px!important;
+    margin-right: 8px!important;
 }

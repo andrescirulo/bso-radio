@@ -20,7 +20,7 @@ const Capitulo = { template: '<div>'+
 				'<div v-html="capitulo.texto" style="text-align:justify"></div>' +
 			  '</div>' +
 			'</v-card-title>' +
-			'<v-card-actions style="flex-wrap:wrap;justify-content: space-evenly;">' +
+			'<v-card-actions :style="getLinksStyle()">' +
 			  '<v-btn class="btn-link-capitulo" v-if="capitulo.linkSpotify!=null" style="background-color:#1dd15d!important" dark :href="capitulo.linkSpotify" target="_blank">' +
 				'<img src="imagenes/logo_spotify_sml.png" style="padding-right:5px" />{{getBtnPrefix() + \'Spotify\'}}' + 
 			  '</v-btn>' +
@@ -84,6 +84,12 @@ const Capitulo = { template: '<div>'+
 	        });
 	},
 	methods:{
+		getLinksStyle: function(){
+			if (this.$vuetify.breakpoint.xs){
+				return 'flex-wrap:wrap;justify-content: space-evenly';
+			}
+			return 'flex-wrap:wrap;justify-content: space-between';
+		},
 		getBtnPrefix: function(){
 			if (this.$vuetify.breakpoint.xs){
 				return '';
