@@ -41,7 +41,6 @@ const Texto = { template: '<div>'+
 	        Vue.http.get("api/textos.php?t=" + idTexto).then(result => {
 	            result.json().then(texto =>{
 	            	this.texto = texto;
-	            	this.addMetaData();
 	            });
 	        }, error => {
 	            console.error(error);
@@ -53,13 +52,6 @@ const Texto = { template: '<div>'+
 				return "200px";
 			}
 			return "400px";
-		},
-		addMetaData: function(){
-			let url = "http://www.bsoradio.com.ar/texto/" + this.texto.id;
-			let titulo = "BSO - " + this.texto.titulo;
-			let imagen = "http://www.bsoradio.com.ar/imagenes/" + this.texto.imagen;
-			let descripcion = this.texto.resenia;
-			this.$root.addMetaData(url,titulo,imagen,descripcion)
 		},
 		volver: function(){
 			this.texto=null;

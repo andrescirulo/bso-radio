@@ -142,24 +142,6 @@ new Vue({
 			let subcontainer=document.getElementById('submain-panel');
 			if (subcontainer==null){return true;}
 			this.imagenGrande=(subcontainer.offsetWidth>720);
-		},
-		addMetaData: function(url,title,image,description){
-			this.addMetaTag("og:url",url);
-			this.addMetaTag("og:type","website");
-			this.addMetaTag("og:title",title);
-			this.addMetaTag("og:image",image);
-			this.addMetaTag("og:description",this.stripHtml(description));
-		},
-		addMetaTag:function(name,content){
-			var meta = document.createElement('meta');
-			meta.name = name;
-			meta.content = content;
-			document.getElementsByTagName('head')[0].appendChild(meta);
-		},
-		stripHtml:function (html){
-		   var tmp = document.createElement("DIV");
-		   tmp.innerHTML = html;
-		   return tmp.textContent || tmp.innerText || "";
 		}
 	}
 }).$mount('#app')

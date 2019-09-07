@@ -18,7 +18,7 @@ const Inicio = { template: '<div>'+
 					'<div>' + 
 					  '<div v-if="post.seccion!=null" class="post-seccion">{{post.seccion}}</div>' + 
 					  '<div class="headline post-titulo">{{post.titulo}}</div>' + 
-					  '<div>{{getFecha(post)}}</div>' + 
+					  '<div>{{getFecha(post)}}</div>' +
 					  '<div class="post-texto" v-html="post.texto"></div>' + 
 					'</div>' + 
 					'<v-card-actions style="justify-content:space-between;padding:0px;margin-top: 10px;">' + 
