@@ -289,3 +289,10 @@
 	margin-left: 8px!important;
     margin-right: 8px!important;
 }
+.btn-small{
+	min-width: 40px!important;
+}
+.fab-link-capitulo{
+	margin-right:10px!important;
+	border-radius:2px!important;
+}
