@@ -60,7 +60,11 @@ const Temporadas = { template: '<div style="text-align:center">' +
 	 },
 	 methods: {
 		 irACapitulo:function(capitulo){
-			this.$router.push('/capitulo/' + capitulo.numero) ;
+			this.$router.push('/capitulo/' + this.getNumeroCapitulo(capitulo)) ;
+		 },
+		 getNumeroCapitulo(capitulo){
+			//SI ES SPINOFF, PONGO NEGATIVO
+			return (capitulo.temporada==0)?capitulo.numero*-1:capitulo.numero;
 		 },
 		 onOpenOrClose(temporada){
 			 if (temporada.capitulos!=null){return;}
